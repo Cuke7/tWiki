@@ -14,12 +14,9 @@
             <div class="italic text-slate-400">
                 {{ description }}
             </div>
-            <div class="customStyles overflow-x-auto flex">
-                <!-- <div v-for="row in test" v-html="parse(row.Ingredients)"></div> -->
-                <div v-if="test" v-html="parse(test[0].Ingredients)"></div>
-                <!-- <div v-for="index in 112" class="">
-                    <span>Option</span><span>{{ index }}</span>
-                </div> -->
+            <div>
+                <div v-if="test" v-html="parse(test[0].Result)" class="customStyles"></div>
+                <div v-if="test" v-html="parse(test[0].Ingredients)" class="customStyles" />
             </div>
         </div>
     </div>
@@ -43,6 +40,7 @@ const getData = async (result: any) => {
     const { data } = await useFetch(`/api/getRecipes?page=${result.src.split("/wiki/")[1]}`);
     results.value = [];
     test.value = data.value?.data_usedIN[0];
+    console.table(test.value);
 };
 
 searchQuery.value = "Auric ore";

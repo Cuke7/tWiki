@@ -8,8 +8,8 @@ export default defineNuxtConfig({
         },
     },
     modules: ['@vite-pwa/nuxt'],
-    devServer: {
-        port: 7541,
-    },
-    ssr: false,
+    // devServer: {
+    //     port: 7541,
+    // },
+    // ssr: false,
 })
