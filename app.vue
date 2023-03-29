@@ -2,7 +2,7 @@
     <div class="h-screen items-center flex flex-col font-mono bg-slate-700 text-white px-4">
         <div class="mt-10 text-4xl">t.Wiki</div>
         <input class="text-white border-2 border-blue-800 bg-transparent rounded-md p-2 outline-none w-full my-4" type="text" placeholder="Chercher..." v-model="searchQuery" />
-        <div class="bg-slate-800 p-8 rounded-t-lg w-full h-3/4">
+        <div class="bg-slate-800 p-8 rounded-t-lg w-full h-3/4 overflow-auto">
             <div class="flex flex-col gap-2">
                 <div v-for="result in results">
                     <div class="underline cursor-pointer" @click="getData(result)">{{ result.name }}</div>
@@ -14,9 +14,9 @@
             <div class="italic text-slate-400">
                 {{ description }}
             </div>
-            <div>
-                <div v-if="test" v-html="parse(test[0].Result)" class="customStyles"></div>
-                <div v-if="test" v-html="parse(test[0].Ingredients)" class="customStyles" />
+            <div v-if="test" v-for="index in test.length - 1" class="mb-10">
+                <div v-html="parse(test[index].Result)" class="customStyles"></div>
+                <div v-html="parse(test[index].Ingredients)" class="customStyles" />
             </div>
         </div>
     </div>
@@ -40,7 +40,7 @@ const getData = async (result: any) => {
     const { data } = await useFetch(`/api/getRecipes?page=${result.src.split("/wiki/")[1]}`);
     results.value = [];
     test.value = data.value?.data_usedIN[0];
-    console.table(test.value);
+    // console.table(test.value);
 };
 
 searchQuery.value = "Auric ore";
