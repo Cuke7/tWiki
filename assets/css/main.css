@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .customStyles img {
+        @apply h-8 w-8;
+    }
+    /* .customStyles ul {
+        @apply flex;
+    }
+    .customStyles li {
+        @apply flex items-center;
+    }
+    .customStyles li span {
+        @apply flex items-center;
+    } */
+}
